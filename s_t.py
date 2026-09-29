@@ -76,7 +76,7 @@ with st.sidebar:
     )
 
 # --- HEADER PRINCIPAL ---
-st.title("🎙️️ Traductor Inteligente de Voz")
+st.title("🎙 Traductor Inteligente de Voz")
 st.caption("Captura tu voz en tiempo real, tradúcela al idioma deseado y escúchala al instante.")
 st.divider()
 
@@ -88,10 +88,16 @@ with col_left:
     with st.container(border=True):
         st.subheader("1. Captura de Voz")
         
-        # Carga opcional de imagen de cabecera si existe
-        if os.path.exists("OIG7.jpg"):
-            image = Image.open("OIG7.jpg")
-            st.image(image, use_container_width=True)
+        # --- IMAGEN CAMBIADA / ACTUALIZADA ---
+        # Imagen moderna de ondas de sonido / micrófono desde Unsplash
+        IMAGE_URL = "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop"
+        
+        # Si tienes una imagen local como 'OIG7.jpg' o 'nueva_imagen.jpg', descomenta las siguientes líneas:
+        # if os.path.exists("nueva_imagen.jpg"):
+        #     st.image("nueva_imagen.jpg", use_container_width=True)
+        # else:
+        
+        st.image(IMAGE_URL, caption="Traducción por Voz en Tiempo Real", use_container_width=True)
             
         st.write("Presiona el botón e inicia el reconocimiento:")
         
@@ -164,7 +170,7 @@ with st.container(border=True):
         text_to_process = st.session_state["transcript"]
         
         if not text_to_process.strip():
-            st.warning("⚠️️ Primero debes hablar al micrófono o escribir un texto arriba.")
+            st.warning("⚠ Primero debes hablar al micrófono o escribir un texto arriba.")
         else:
             with st.spinner("Traduciendo y generando el audio..."):
                 try:
@@ -203,9 +209,7 @@ with st.container(border=True):
             st.markdown("**Reproductor de Voz:**")
             if st.session_state["audio_path"] and os.path.exists(st.session_state["audio_path"]):
                 with open(st.session_state["audio_path"], "rb") as f:
-                    st.audio(f.read(), format="audio/mp3")       
-    
-
+                    st.audio(f.read(), format="audio/mp3")
 
 
         
